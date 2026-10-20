@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Corazón que late
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: url("https://cdn.pixabay.com/photo/2013/07/18/20/18/space-164401_1280.jpg");
+
+      background-size: cover;
+    }
+
+    .corazon {
+      position: relative;
+      width: 200px;
+      height: 180px;
+      cursor: pointer;
+      transform: scale(1.5);
+    }
+
+    .corazon::before,
+    .corazon::after {
+      content: "";
+      position: absolute;
+      width: 100px;
+      height: 160px;
+      background: red;
+      border-radius: 100px 100px 0 0;
+    }
+
+    .corazon::before {
+      left: 100px;
+      transform: rotate(-45deg);
+      transform-origin: 0 100%;
+    }
+
+    .corazon::after {
+      left: 0;
+      transform: rotate(45deg);
+      transform-origin: 100% 100%;
+    }
+
+    .texto {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgb(3, 3, 3);
+  font-size: 22px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px black; /* sombra para contraste */
+  z-index: 10; /* asegura que quede encima del corazón */
+}
+
+
+    .latir {
+      animation: latido 0.9s ease;
+    }
+
+    @keyframes latido {
+      0%   { transform: scale(1.5); }
+      25%  { transform: scale(1.7); }
+      50%  { transform: scale(1.5); }
+      75%  { transform: scale(1.7); }
+      100% { transform: scale(1.5); }
+    }
+  </style>
+</head>
+<body>
+  <div class="corazon" id="corazon">
+    <div class="texto">Te amo</div>
+  </div>
+
+  <script>
+    const corazon = document.getElementById("corazon");
+
+    corazon.addEventListener("click", () => {
+      corazon.classList.add("latir");
+      setTimeout(() => {
+        corazon.classList.remove("latir");
+      }, 600);
+    });
+  </script>
+</body>
+</html>
+
